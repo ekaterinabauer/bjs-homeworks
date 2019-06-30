@@ -11,6 +11,7 @@ function calculateQuadraticEquation(){
 }
 
 function getResult(a,b,c){
+  let x;
     let d = Math.pow(b, 2) - 4 * a * c;
  if (d > 0) {
    x = [((- b + Math.sqrt(d)) / 2 * a), ((- b - Math.sqrt(d)) / 2 * a)];
@@ -20,8 +21,6 @@ function getResult(a,b,c){
    x = [];
  }
  console.log(x);
-    // код для задачи №1 писать здесь
-    //return x;
 }
 
 function calculateDrinkTask(){
@@ -41,9 +40,6 @@ let age = year - dateOfBirthday;
   result = (`Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`);
   }
   console.log(result);
-    // код для задачи №2 писать здесь
-    //console.log(result)
-    //return result;
 }
 
 function calculateAverageRating(){
@@ -54,15 +50,13 @@ function calculateAverageRating(){
 
 function getAverageMark(marks){
     let sum = 0;
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < marks.length; i++) {
     sum += marks[i];
-  }
     if (marks.length > 5) { 
-    averageMark = ('Слишком много оценок', marks.slice(0, 5), (sum / marks.slice(0, 5).length));
+    averageMark = ('Слишком много оценок', marks.splice(5), (sum / marks.length));
   } else {
     averageMark = (sum / marks.length);
-    }
-    console.log(averageMark);
-    // код для задачи №3 писать здесь
-    //return averageMark;
+    } 
+}
+console.log(averageMark);
 }
