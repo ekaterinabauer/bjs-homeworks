@@ -50,13 +50,12 @@ function calculateAverageRating(){
 
 function getAverageMark(marks){
     let sum = 0;
+  if (marks.length > 5) {
+    marks.splice(5);
+  }
   for (let i = 0; i < marks.length; i++) {
     sum += marks[i];
-    if (marks.length > 5) { 
-    averageMark = ('Слишком много оценок', marks.splice(5), (sum / marks.length));
-  } else {
-    averageMark = (sum / marks.length);
-    } 
-}
-console.log(averageMark);
+    averageMark = sum / marks.length;
+  }
+  console.log(averageMark);
 }
