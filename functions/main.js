@@ -48,19 +48,24 @@ for (let i= 0; i < marks.length; i++) {
 }
 return(sum / count);
  }
-let result = new Object ();
- 
- result.algebra = averageArray(data.algebra);
- result.geometry = averageArray(data.geometry);
- result.russian = averageArray(data.russian);
- result.physics = averageArray(data.physics);
- result.music = averageArray(data.music);
- result.english = averageArray(data.english);
- result.poetry = averageArray(data.poetry);
- result.chemistry = averageArray(data.chemistry);
- result.french = averageArray(data.french);
+let result = [];
 
- return result;
+for (let i = 0; i <= 10; i++){
+  result[i] = {
+    algebra: averageArray(data.algebra),
+    geometry: averageArray(data.geometry),
+    russian: averageArray(data.russian),
+    physics: averageArray(data.physics),
+    music: averageArray(data.music),
+    english: averageArray(data.english),
+    poetry: averageArray(data.poetry),
+    chemistry: averageArray(data.chemistry),
+    french: averageArray(data.french),
+    average: (averageArray(data.algebra + data.geometry + data.russian + data.physics + data.music + data.english + data.poetry + data.chemistry + data.french)/9
+  }
+  return result;
+}
+ 
 }
 
 
