@@ -1,4 +1,4 @@
-// Задача 1
+// Задача 1 + Задача 2
 
 class Weapon {
   constructor ({name, attack, durability, range}) {
@@ -6,23 +6,26 @@ class Weapon {
     this.attack = attack;
     this.durability = durability;
     this.range = range;
+    this.initialDurability = durability;
   }
 
   takeDamage(damage) {
-    this.durability = this.durability - damage;
-    if (this.durability < 0) {
+    if (this.durability - damage >= 0) {
+      this.durability = this.durability - damage;
+    } else if (this.durability - damage < 0) {
       this.durability = 0;
     }
+      return this.durability;
   }
 
   getDamage() {
-    if (this.durability == 0){
-      return 0;
-    }else if(this.durability >= (10 * 0,3)) {
+    if (this.durability >= 0.3 * this.initialDurability) {
       return this.attack;
-    } else if(0 < this.durability < (10 * 0,3)) {
-      return (this.attack / 2);
-    }
+    } else if (this.durability === 0) {
+      return 0;
+    }else if (this.durability < 0.3 * this.initialDurability) {
+      return this.attack / 2;
+    } 
   }
 
   isBroken() {
@@ -34,35 +37,50 @@ class Weapon {
   }
 }
 
-const arm = new Weapon({
+class Arm extends Weapon {
+}
+
+const arm = new Arm({
   name: 'Рука',
   attack: 1,
   durability: Infinity,
   range: 1,
 });
 
-const bow = new Weapon({
+class Bow extends Weapon {  
+}
+
+const bow = new Bow({
   name: 'Лук',
   attack: 10,
   durability: 200,
   range: 3,
 });
 
-const sword = new Weapon({
+class Sword extends Weapon {
+}
+
+const sword = new Sword({
   name: 'Меч',
   attack: 25,
   durability: 500,
   range: 1,
 });
 
-const knife = new Weapon({
+class Knife extends Weapon {
+}
+
+const knife = new Knife({
   name: 'Нож',
   attack: 5,
   durability: 300,
   range: 1,
 });
 
-const staff = new Weapon({
+class Staff extends Weapon {
+}
+
+const staff = new Staff({
   name: 'Посох',
   attack: 8,
   durability: 300,
@@ -70,32 +88,81 @@ const staff = new Weapon({
 });
 
 class ReinforcedWeapon extends Weapon {
-  constructor ({name, attack, durability, range}) {
-    super({name, attack, durability, range})
-    this.name = name;
-    this.attack = attack;
-    this.durability = durability;
-    this.range = range;
-  }
+  
 }
 
-const longBow = new ReinforcedWeapon({
+class LongBow extends Bow {
+}
+
+const longBow = new LongBow({
   name: 'Длинный лук',
   attack: 15,
   durability: bow.durability,
   range: 4,
 });
 
-const poleaxe = new ReinforcedWeapon({
+class Poleaxe extends Sword {
+}
+
+const poleaxe = new Poleaxe({
   name: 'Секира',
   attack: 27,
   durability: 800,
   range: sword.range,
 });
 
-const stormStaff = new ReinforcedWeapon({
+class StormStaff extends Staff {
+}
+
+const stormStaff = new StormStaff({
   name: 'Посох Бури',
   attack: 10,
   durability: staff.durability,
   range: 3,
 });
+
+bow.takeDamage(20);
+console.log(bow.durability);
+console.log(bow.getDamage());
+console.log(bow.isBroken());
+bow.takeDamage(160);
+console.log(bow.durability);
+console.log(bow.getDamage());
+console.log(bow.isBroken());
+bow.takeDamage(20);
+console.log(bow.getDamage());
+console.log(bow.isBroken());
+bow.takeDamage(20);
+console.log(bow.getDamage());
+console.log(bow.isBroken());
+
+console.log();
+
+arm.takeDamage(20);
+console.log(arm.durability);
+console.log(arm.getDamage());
+console.log(arm.isBroken());
+arm.takeDamage(160);
+console.log(arm.durability);
+console.log(arm.getDamage());
+console.log(arm.isBroken());
+arm.takeDamage(50);
+console.log(arm.getDamage());
+console.log(arm.isBroken());
+
+console.log();
+
+poleaxe.takeDamage(20);
+console.log(poleaxe.durability);
+console.log(poleaxe.getDamage());
+console.log(poleaxe.isBroken());
+poleaxe.takeDamage(160);
+console.log(poleaxe.durability);
+console.log(poleaxe.getDamage());
+console.log(poleaxe.isBroken());
+poleaxe.takeDamage(20);
+console.log(poleaxe.getDamage());
+console.log(poleaxe.isBroken());
+poleaxe.takeDamage(500);
+console.log(poleaxe.getDamage());
+console.log(poleaxe.isBroken());
